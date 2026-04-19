@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+body { 
+    background-color: #000; 
+    color: #f8fafc; 
+    overflow: hidden; 
+}
+
+.chord-line { 
+    line-height: 1.2; 
+    letter-spacing: 0.05em; 
+}
+
+.lyrics-line { 
+    line-height: 1.4; 
+    color: #94a3b8; 
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+* { 
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.active-glow { 
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); 
+}
