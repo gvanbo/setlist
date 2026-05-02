@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const songs = [
     {
@@ -56,8 +56,8 @@ export default function App() {
     const [showLyrics, setShowLyrics] = useState(true);
     const song = songs[currentIdx];
 
-    const next = () => currentIdx < songs.length - 1 && setCurrentIdx(currentIdx + 1);
-    const prev = () => currentIdx > 0 && setCurrentIdx(currentIdx - 1);
+    const next = useCallback(() => setCurrentIdx(idx => idx < songs.length - 1 ? idx + 1 : idx), []);
+    const prev = useCallback(() => setCurrentIdx(idx => idx > 0 ? idx - 1 : idx), []);
 
     useEffect(() => {
         const handleKey = (e) => {
@@ -67,7 +67,7 @@ export default function App() {
         };
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [currentIdx]);
+    }, [next, prev]);
 
     return (
         <div className="flex h-screen bg-black">
